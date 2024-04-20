@@ -3,7 +3,6 @@ import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
 import 'package:yuktidea/util/custom_widget/custom_text.dart';
 import 'package:yuktidea/util/globalscolors.dart';
-
 import '../../../util/constant_text.dart';
 import '../../../util/custom_widget/MyButton.dart';
 import '../controllers/auth_controller.dart';
