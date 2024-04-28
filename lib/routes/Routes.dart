@@ -15,7 +15,7 @@ class Routes {
     GetPage(name: '/', page: () => SelectOptionsScreen()),
     GetPage(name: '/terms', page: () =>   TermsPage()),
     GetPage(name: '/countryList', page: () =>   CountryListPage()),
-    GetPage(name: '/getPhoneNumber', page: () =>   const GetPhoneNumber()),
+    GetPage(name: '/getPhoneNumber', page: () =>    const GetPhoneNumber()),
     GetPage(name: '/verifyPhoneNumber', page: () =>   VerifyPhoneNumber()),
     GetPage(name: '/selectCountry', page: () =>   const SelectCountry()),
     GetPage(name: '/homePage', page: () =>   const HomePage()),

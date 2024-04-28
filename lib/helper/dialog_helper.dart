@@ -21,13 +21,8 @@ class DialogHelper {
               actions: [
                 CupertinoDialogAction(
                     onPressed: () {
-                      // if (Get.isDialogOpen!) {
-                      //   Get.back();
-                      //   hideLoading();
-                      //   storage.write("token", "");
-                      //   Get.offAll(() => LoginScreen());
-                      //
-                      // }
+                      Get.back();
+                      hideLoading();
                     },
                     isDefaultAction: true,
                     child: const Text("Okay"))
@@ -84,10 +79,10 @@ class DialogHelper {
                                   textStyle: const TextStyle(fontSize: 16),
                                 ),
                                 onPressed: () {
-                                  if (Get.isDialogOpen!) {
+                                //  if (Get.isDialogOpen!) {
                                     Get.back();
                                     hideLoading();
-                                  }
+                                 // }
                                 },
                                 child: const Text("Okay",
                                     style: TextStyle(

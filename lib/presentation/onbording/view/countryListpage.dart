@@ -13,12 +13,18 @@ class CountryListPage extends StatefulWidget {
   _CountryListPageState createState() => _CountryListPageState();
 }
 
+
 class _CountryListPageState extends State<CountryListPage> {
+
+  var loginType="Agent";
+  @override
+  void initState() {
+    super.initState();
+     }
 
   @override
   Widget build(BuildContext context) {
-    final Map arguments = Get.arguments;
-    final loginType = arguments['loginType'];
+
 
     return Scaffold(
       body: GetBuilder<AuthController>(
@@ -130,13 +136,10 @@ class _CountryListPageState extends State<CountryListPage> {
                             return GestureDetector(
                               onTap: () {
                                 controller.searchController.clear();
-                                Get.toNamed("getPhoneNumber", arguments: {
-                                  'countyCode': controller
-                                      .filteredCountries[index].telCode,
-                                  'flagImage':
-                                      controller.filteredCountries[index].flag,
-                                  'loginType':loginType
-                                });
+                                controller.flgImage=controller.filteredCountries[index].flag!;
+                                controller.countryCode=controller.filteredCountries[index].telCode!;
+                                controller.loginType=loginType;
+                                Get.toNamed("getPhoneNumber");
                               },
                               child: Container(
                                 width: MediaQuery.of(context).size.width,

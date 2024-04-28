@@ -15,18 +15,17 @@ class SelectOptionsScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return  Scaffold(
       resizeToAvoidBottomInset: false,
-      body: Stack(
+      body:SafeArea(
+        child: SingleChildScrollView(
+        child: Stack(
         children: [
-            Expanded(
-              flex: 3,
-              child:Container(
+              Container(
                 color: Colors.white,
                 child: Image.asset("assets/ic_main_img.gif",
                   fit: BoxFit.scaleDown,
 
                 ),
-              )
-          ),
+              ),
           Container(
             padding: EdgeInsets.only(bottom:MediaQuery.of(context).size.height * 0.04 ),
             margin: EdgeInsets.only(top: MediaQuery.of(context).size.height * 0.6),
@@ -69,15 +68,15 @@ class SelectOptionsScreen extends StatelessWidget {
                 const SizedBox(
                   height: 20,
                 ),
-                  Row(
+                Row(
                   children: [
-                      Expanded(
-                        flex: 1,
-                        child: GestureDetector(
-                          onTap:(){
-                            Get.toNamed("countryList",arguments: {'loginType': 'Student'});
-                          },
-                          child: const Column(
+                    Expanded(
+                      flex: 1,
+                      child: GestureDetector(
+                        onTap:(){
+                          Get.toNamed("countryList",arguments: {'loginType': 'Student'});
+                        },
+                        child: const Column(
                           children: [
                             // Add your widgets here
                             ImageWithShadow(
@@ -97,7 +96,7 @@ class SelectOptionsScreen extends StatelessWidget {
                         ),
                       ),
                     ),
-                      Expanded(
+                    Expanded(
                       flex: 1,
                       child: GestureDetector(
                         onTap:(){
@@ -132,7 +131,7 @@ class SelectOptionsScreen extends StatelessWidget {
                 GestureDetector(
                   onTap: (){
                     Get.to(() => TermsPage());
-                    },
+                  },
                   child: RichText(
                     text: const TextSpan(
                       style: TextStyle(
@@ -164,7 +163,7 @@ class SelectOptionsScreen extends StatelessWidget {
           ),
         ],
       ),
-    );
+    )));
   }
 }
 

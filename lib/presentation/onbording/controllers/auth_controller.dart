@@ -25,6 +25,11 @@ class AuthController extends GetxController with BaseController {
   final FocusNode focusNode = FocusNode();
   var selectedCountryId="".obs;
 
+  var loginType="";
+  var countryCode="";
+  var flgImage="";
+
+
 
   @override
   void onInit() {
@@ -44,7 +49,7 @@ class AuthController extends GetxController with BaseController {
     update();
   }
 
-  void studentLogin(countyCode, loginType, bool ispageOpen, flagImage) async {
+  void studentLogin( bool ispageOpen) async {
     if(phoneTextEditingController.text.trim().isEmpty){
       showSnackbar("Alert!", "Please enter your mobile number!");
 
@@ -52,7 +57,7 @@ class AuthController extends GetxController with BaseController {
 
       showLoading(loading);
       var request = {
-        'tel_code': countyCode.trim(),
+        'tel_code': countryCode,
         'phone': phoneTextEditingController.text.trim()
       };
       var response = await RemoteServices().post(
@@ -61,48 +66,48 @@ class AuthController extends GetxController with BaseController {
         hideLoading();
       });
       if (response == null) return;
-      var responseJson =
-      jsonDecode(response); // Assuming response is a JSON string
+      var responseJson = jsonDecode(response); // Assuming response is a JSON string
       loginResponse = LoginResponse.fromJson(responseJson);
       hideLoading();
       if(ispageOpen){
         Get.toNamed("verifyPhoneNumber", arguments: {
-          'countyCode': '${countyCode.trim()}',
+          'countyCode': countryCode,
           'phone': phoneTextEditingController.text.trim(),
           'loginType': loginType,
-          'flagImage':flagImage
+          'flagImage':flgImage
         });
-
       }
       update();
 
     }
   }
 
-  void counsellorLogin(countyCode, loginType, bool ispageOpen, flagImage) async {
+  void counsellorLogin(bool ispageOpen) async {
     showLoading(loading);
+    var number=phoneTextEditingController.text.trim();
     var request = {
-      'tel_code': countyCode.trim(),
-      'phone': phoneTextEditingController.text.trim()
+      'tel_code': countryCode,
+      'phone': number
     };
     var response = await RemoteServices().post(baseUrl, 'counsellor/login',request).catchError((error) {
       handleError(error);
       hideLoading();
     });
     if (response == null) return;
-    var responseJson =
-    jsonDecode(response); // Assuming response is a JSON string
+    var responseJson = jsonDecode(response); // Assuming response is a JSON string
     loginResponse = LoginResponse.fromJson(responseJson);
     if(ispageOpen){
-      Get.toNamed("verifyPhoneNumber", arguments: {
-        'countyCode': '${countyCode.trim()}',
-        'phone': phoneTextEditingController.text.trim().toString(),
-        'loginType': loginType,
-        'flagImage':flagImage
-      });
-      update();
       hideLoading();
-    }
+      Get.toNamed("verifyPhoneNumber");
+      update();
+    // , arguments: {
+    // 'countyCode': countryCode,
+    // 'phone': number,
+    // 'loginType': loginType,
+    // 'flagImage':flgImage
+    // }
+
+     }
    }
 
   void resendOtp(countyCode) async {
@@ -135,7 +140,6 @@ class AuthController extends GetxController with BaseController {
     hideLoading();
     var responseJson = jsonDecode(response); // Assuming response is a JSON string
     verifyOtpResponse = VerifyOtpResponse.fromJson(responseJson);
-    debugPrint("authToken=== ${ verifyOtpResponse!.data!.accessToken}");
     storage.write('token', verifyOtpResponse!.data!.accessToken);
     Get.toNamed("selectCountry");
     update();

@@ -23,9 +23,11 @@ class VerifyPhoneNumberState extends State<VerifyPhoneNumber> {
   late Timer timer;
   int start = 10; // Timer duration in seconds
 
+
   @override
   void initState() {
     super.initState();
+
     startTimer();
   }
 
@@ -52,11 +54,7 @@ class VerifyPhoneNumberState extends State<VerifyPhoneNumber> {
 
   @override
   Widget build(BuildContext context) {
-    final Map arguments = Get.arguments;
-    final countyCode = arguments['countyCode'];
-    final phone = arguments['phone'];
-    final loginType = arguments['loginType'];
-    final flagImage = arguments['flagImage'];
+
 
     return Scaffold(
       body: GetBuilder<AuthController>(
@@ -68,12 +66,8 @@ class VerifyPhoneNumberState extends State<VerifyPhoneNumber> {
               children: [
                 GestureDetector(
                   onTap: () {
-                  //  Get.back();
-                    Get.toNamed("getPhoneNumber", arguments: {
-                      'countyCode': countyCode,
-                      'flagImage': flagImage,
-                      'loginType':loginType
-                    });
+                    //  Get.back();
+                    Get.toNamed("getPhoneNumber");
                   },
                   child: SizedBox(
                     width: 60,
@@ -166,12 +160,11 @@ class VerifyPhoneNumberState extends State<VerifyPhoneNumber> {
                     child: start == 0
                         ? GestureDetector(
                             onTap: () {
-                              if (loginType == "Agent") {
-                                authController.counsellorLogin(
-                                    countyCode, loginType, false,flagImage);
+                              if (authController.loginType == "Agent") {
+                                authController.counsellorLogin(false);
                               } else {
                                 authController.studentLogin(
-                                    countyCode, loginType, false,flagImage);
+                                     false);
                               }
                               startTimer();
                             },
@@ -216,7 +209,7 @@ class VerifyPhoneNumberState extends State<VerifyPhoneNumber> {
                 text: 'Verify',
                 color: btnColor,
                 onPressed: () {
-                  authController.verifyOtp("$countyCode$phone");
+                  authController.verifyOtp("${authController.countryCode}${authController.phoneTextEditingController.text.toString()}");
                 },
               ),
             ),

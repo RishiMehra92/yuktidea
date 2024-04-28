@@ -18,10 +18,7 @@ class _SelectCountryState extends State<SelectCountry> {
   int selectedIndex = -1;
   @override
   Widget build(BuildContext context) {
-    // final Map arguments = Get.arguments;
-    // final countyCode = arguments['countyCode'];
-    // final flagImage = arguments['flagImage'];
-    // final loginType = arguments['loginType'];
+
 
     return Scaffold(
         body: SizedBox(
@@ -35,12 +32,7 @@ class _SelectCountryState extends State<SelectCountry> {
                         GestureDetector(
                           onTap: () {
                            Get.back();
-                            // Get.toNamed("verifyPhoneNumber", arguments: {
-                            //   'countyCode': '${countyCode.trim()}',
-                            //   'phone': controller.phoneTextEditingController.text.trim(),
-                            //   'loginType': loginType,
-                            //   'flagImage':flagImage
-                            // });
+
                           },
                           child: SizedBox(
                               width: 60,

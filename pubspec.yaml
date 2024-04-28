@@ -50,12 +50,12 @@ dev_dependencies:
   get: ^4.3.8
   get_storage: ^2.0.3
   http: ^0.13.6
-  flutter_svg: ^1.1.4
+  flutter_svg: ^2.0.9
   cupertino_icons: ^1.0.2
   pin_code_fields: ^8.0.1
   flutter_html: ^3.0.0-beta.2
   intl: ^0.17.0
-# For information on the generic Dart part of this file, see the
+  # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec
 
 # The following section is specific to Flutter packages.
